@@ -1,0 +1,133 @@
+@import url(../stylesheets/mobile.css);
+@import url(../stylesheets/mobileLandscape.css);
+@import url(../stylesheets/desktop.css);
+
+@font-face {
+    font-family: darkSouls;
+    src: url(/fonts/OptimusPrinceps.ttf);
+  }
+
+#chat {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    color: white;
+    height: 90vh;
+    width: 40vw;
+    padding: 1rem;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+    overflow: hidden;
+    word-break: break-all;
+    pointer-events: none;
+}
+
+#chat li {
+    padding: 0 1rem;
+    animation: 10s bewegenOmlaag forwards linear;
+}
+
+#chat li a {
+    pointer-events: all;
+}
+
+@keyframes bewegenOmlaag {
+    0% {
+        opacity: 0;
+        transform: translate(0vh, 0vh);
+    }
+    39% {
+        opacity: 0;
+        transform: translate(0vh, 0vh);
+    }
+    40% {
+        opacity: 1;
+        transform: translate(0vh, 0vh);
+    }
+    90% {
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0vh, 90vh);
+        opacity: 0;
+    }
+}
+
+.bossfight {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.bossfight h2 {
+    color: red;
+    font-weight: 900;
+    font-size: 1em;
+    font-family: darkSouls;
+}
+
+.boss {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 70vw;
+    height: 40vh;
+    top: 0;
+    left: 0;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.boss img {
+    width: 100%;
+    height: auto;
+}
+
+.usernameSection {
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000000;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.usernameSection form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.usernameSection form button {
+    padding: 1vh 4vw;
+    margin-top: 1vh;
+    border-radius: 5px;
+    background: white;
+    border: none;
+    font-family: unset;
+}
+
+.usernameSection form input {
+    background: white;
+    border: none;
+    padding: 0.7vh 1vw;
+    border-radius: 5px;
+}
+
+.usernameSection form label {
+    margin-bottom: 1vh;
+}
+
+.hidden {
+    display: none;
+}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <%- include('./partials/head') -%>
+  <body>
+    <%- include('./partials/header') -%>
+    <main>
+      <ul id="items" class="ArtContentContainer">
+          <% data.map((kunst) => { const img = kunst.webImage.url.slice(0,-3)+"=s1000"%>
+
+          <li class="artSection">
+            <a href="/art/<%= kunst.objectNumber %>">
+              <h2>
+                <%= kunst.title %> <br />
+                <i> <%= kunst.principalOrFirstMaker %> </i>
+              </h2>
+              <img src="<%= img %>" alt="<%= kunst.title %>" loading="lazy"/>
+            </a>
+          </li>
+          <% }) %>
+      </ul>
+      <ul id="chat"></ul>
+    </main>
+    <%- include('./partials/footer') -%>
+  </body>
+</html>

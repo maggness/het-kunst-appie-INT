@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <%- include('./partials/head') -%>
+  <body>
+    <%- include('./partials/header') -%>
+    <main>
+      <section>
+        <% const img = data.webImage.url.slice(0,-3)+"=s10000" %>
+        <section class="artSectionDetails" id="artDetail">
+          <img src="<%= img %>" alt="<%= data.title %>" width="100vmin" height="auto"/>
+          <h2>
+            <a href="/bossfight/<%= data.objectNumber %>"><%= data.title %> </a> <br />
+            <i>- <%= data.principalOrFirstMaker %></i>
+            <span>Tap artwork to zoom in</span>
+          </h2>
+        </section>
+      </section>
+    </main>
+    <%- include('./partials/footer') -%> 
+  </body>
+</html>

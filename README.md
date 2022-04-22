@@ -1,154 +1,105 @@
-# Real-Time Web @cmda-minor-web 2021 - 2022
+# Progressive Web Apps @cmda-minor-web · 2021/22
 
-## Table of Contents
-- [Synopsis](#synopsis)
-- [Description](#description)
-- [Communication](#communication)
-- [Goals](#goals)
-- [Grading](#grading)
-- [Programme](#programme)
+Voor mijn minor web maak ik met de API van het Rijksmuseam een applicatie waar je kan zoeken naar verschillende objecten uit deze API.
 
-## Synopsis
-- Course: Real-Time Web
-- Course Coordinator: Justus Sturkenboom ([@ju5tu5](https://github.com/ju5tu5))
-- Minor Coordinator(s): Joost Faber ([@joostf](https://github.com/joostf)) Koop Reynders ([@KoopReynders](https://github.com/KoopReynders))
-- Lecturers: Shyanta Vleugel ([@shyanta](https://github.com/shyanta)) & Justus Sturkenboom ([@ju5tu5](https://github.com/ju5tu5))
-- Student Assistants: Daan Korver ([@daankorver](https://github.com/DaanKorver))
-- Credit: 3 ECTS credits
-- Academic year: 2021-2022
-- Programme: Communication and Multimedia Design (full time bachelor)
-- Language: Dutch instructions and English resources
+Je kan dit niet via github pages bekijken, dit moet je local runnen
 
-## Description
-During this course you will learn how to build a real-time application. You will learn techniques to setup an open connection between the client and the server. This will enable you to send data in real-time both ways, at the same time.
+![Front-end frontpage image](https://user-images.githubusercontent.com/30145681/157264964-a8900826-9802-4eb3-a5a7-f0be3a5e7089.png)
 
-## Communication
-- [Github](https://github.com/cmda-minor-web/real-time-web-2122)
-- [Microsoft Teams](https://teams.microsoft.com/l/channel/19%3a2b5ac900b14c4b68a31dc5dbb380dcbe%40thread.tacv2/06%2520-%2520Real%2520Time%2520web)
-- [Brightspace](https://dlo.mijnhva.nl/d2l/home/324147)
+### User story
 
-If you have questions:
-- [Look at the additional resources]()
-- [Use a search engine like startpage](https://www.startpage.com/)
-- [Ask questions on MS Teams](https://teams.microsoft.com/l/channel/19%3a2b5ac900b14c4b68a31dc5dbb380dcbe%40thread.tacv2/06%2520-%2520Real%2520Time%2520web) (please help each other!)
-- [Contact a student-assisstant](#synopsis)
-- [Contact a lecturer](#synopsis)
+As an art lover, I want to be able to search and view art from the Rijksmuseum at home, so that I can still enjoy art during a lockdown [Rijksmuseum - RijksData API](https://github.com/cmda-minor-web/web-app-from-scratch-2122/blob/main/course/rijksmuseum.md)
 
-## Goals
-After finishing this program you can:
-- _deal with real-time complexity;_
-- _handle real-time client-server interaction;_
-- _handle real-time data management;_
-- _handle multi-user support._
+## How to use
 
-## Grading
-Your efforts will be graded using a single point rubric (see below). You will have to pass the criterion (centre column) to pass the course. During the test you will be consulted and will be given feedback on things we think deficient and things we think are an improvement on the criterion.
+Met deze app kan je zoeken naar objecten uit de database van het Rijksmuseum. Je kan op de kunstwerken drukken en zo kom je op een detail pagina met wat langere informatie over dat kunstwerk. Ook kan je inzoomen op het kunstwerk. Als je op mobiel kijkt en je het scherm naar landscape modus brengt gaat de UI weg en zie je het kunstwerk nog beter, ook hier kun je inzoomen.
 
-| Deficiency | Criterion | Improvement |
-|:--|:--|:--|
-|  | *Project* Your app is working and published on Heroku. Your project is thoroughly documented in the `README.md` file in your repository. Included are a description of the data-lifecycle, real-time events and external data source used by your app. |  |
-|  | *Complexity* You’ve implemented enough real-time functionality for us to test your comprehension of the subject. A lot of functionality is self-written. You are able to manipulate online examples live. |  |
-|  | *Client-server interaction* By interacting with the app, a user can influence the data model of the server in real time by directly modifying data OR by influencing API requests between server and source. The student has set up the data manipulations. |  |
-|  | *Data management* The server maintains a data model and each client is continuously updated with the correct data. |  |
-|  | *Multi-user support* Multiple clients can connect to the server. Interaction works as expected and is not dependent on the number of clients. You can explain how your app approaches this. |  |
+## Install the project
 
-## Programme
+Om dit te runnen moet je node & npm hebben geinstalleerd.
 
-### Daily Schedule
-To keep things simple we use a daily schedule that will be used during normal course days (monday/tuesday). We make exceptions for fridays, on these days a different schedule will be given.
+Om dit project local te laten draaien kun je dit project clone met: `gh repo clone maggness/Het-Kunst-Appie-ULT`. Draai de code op een local server, anders werken de modules niet.
 
-| Time | Who | Activity |
-|:--|:--|:--|
-| *~09:00* | *(Shyanta, Justus)* | *Standup* |
-| 09:30 | Tribe *+(Shyanta, Justus)* | Talk with crucial information (make sure you attend!) |
-| 11:00 | Tribe | Work on the (day)assignment |
-|  | Team 1 *+(Shyanta)* | Standup |
-|  | Team 2 *+(Justus)* | Standup |
-| 11:20 | Team 3 *+(Shyanta)* | Standup |
-|  | Team 4 *+(Justus)* | Standup |
-| 11.40 | Team 5 *+(Shyanta)* | Standup |
-|  | Team 6 *+(Justus)* | Standup |
-| 12.00 | Team 7 *+(Shyanta)* | Standup |
-|  | Team 8 *+(Justus)* | Standup |
-| 12.20 | Team 9 *+(Shyanta)* | Standup |
-|  | Team 20 *+(Justus)* | Standup |
-| 13:00 | Tribe *+(Daan, Justin)* | Continue work on the (day)assignment |
-| 16:00ish | Tribe | Wrapup |
+Vergeet niet `npm install` te gebruiken om de node modules te installeren.
 
-### Week 1 - Getting a grip
-Goal: Build and deploy a simple but unique real-time app
+Ook moet je de API key veranderen naar je eigen key. die staat in de URL na `key=`
 
-#### Tuesday 19 April 
-**Talk subjects:** Hit the ground running... [(slides)](https://docs.google.com/presentation/d/1Z-zOIDvFB0P2qGHV0F74n9T4kprgybJ_8GYU-1MaKfM/edit?usp=sharing) Course objective and explanation of the assignment, examples from last year, explanation of real-time, (live coded) bare bone chat app and deployment on Heroku.\
-**Day assignment:** [(assignment)](./course/week-1.md#assignment-1-make-it-so) Make it so *(as a team)*: Implement (code/style/discuss/deploy) basic chat (or other realtime) functionality on your teampage!
+Run de applicatie op je localhost:6969, dit kan je doen met `npm start`.
 
-#### Friday 22 April
-**Talk subjects:** My first realtime web app! [(slides)](https://docs.google.com/presentation/d/18eftO3epzIXDjdwl3cn5Wq99fkQYCUnExUqq9P72A3k/edit?usp=sharing) Short recap, (local) data management, using (wire) flows for realtime web apps, (live coded) multi-user woordzoeker.\
-**Day assignment:** [(assignment)](./course/week-1.md#assignment-2-make-it-so) Make it so *(individually)*. i) Create (code/style/discuss/deploy) a chat app (or other realtime functionality) based on the examples and ii) add your own unique feature!
+## Install the app
 
-### Week 2 - Sockets and data
-Goal: Store, manipulate and share data between server-client   
+Je kan de app op je telefoon of desktop installeren, doe dit via deze link: https://het-kunst-appie.herokuapp.com/
+ 
 
-#### Monday 25 April
-**Talk subjects:** Data driven development?! [(slides)](https://docs.google.com/presentation/d/1WC1DxkQm2eUCTQp7dEfv0cTVMK7zlg3der0P0qP7S5I/edit?usp=sharing) Feedback about last week, final assignment and conditions (rubric), explanation of data management, (live coded) Long polling vs Websockets. \
-**Day assignment:** [(assignment)](./course/week-2.md#assignment-1-proof-of-concept) (Proof of) Concept *(individually)*. i) Create a (3 > 1) concept based on existing data from an API and ii) map this data using modelling techniques.
+## Activity Diagram
 
-#### Tuesday 26 April
-**Talk subjects:** Above all else, show the data. [(slides)](https://docs.google.com/presentation/d/1tW4klrDjt1AfWte311uKkfQYwaHwokzQ-ue3a4VphqA/edit?usp=sharing) Securing real-time web apps, offline support, the publication/subscription model and (case study) Quek!\
-**Day assignment:** [(assignment)](./course/week-2.md#assignment-2-proof-of-concept) Proof of concept *(individually)*: i) Create (code/style/discuss/deploy) part of the core functionality for your concept and ii) show the  corresponding data lifecycle diagram.
+![Activity Diagram](https://user-images.githubusercontent.com/30145681/162433702-7b9e2509-9ff7-4fca-95f8-14fe86fcd5dc.png)
 
-#### Friday 29 April
-Instead of our talk we will have a [peer review session](./course/peer-review.md). You will read, comment and fire issues on each others code. Doing this is really good for your programming insight and helps others refining/refactoring their code.
+## Snelheid vergelijking WAFS/PWA
 
-| Time | Who | Activity |
-|:--|:--|:--|
-| | Tribe *+(Shyanta, Justus)* | Peer review |
+### WAFS Snelheid
 
-### Week 3 - Dealing with multiple users
-Goal: Handle data sharing and multi-user support 
+(WAFS) Snelheid van de het kunst appie op mobiel: 
 
-#### Monday 9 May
-**Talk subjects:** Roll your own... [(slides) ](https://docs.google.com/presentation/d/1Cx9qCo8QQXH5Btbtwg0L61so-wn2OxFQZdphIhbumQk/edit?usp=sharing) Data management, the functional programming trinity (map, filter and reduce). OAuth?!
-**Day assignment:** [(assignment)](./course/week-3.md#assignment-1-data-management)
+![image](https://user-images.githubusercontent.com/30145681/161752912-dc3fa21d-e44a-4fdf-9dbf-e94b4bdd0f7f.png)
 
-#### Tuesday 10 May
-**Talk subjects:** Not ignoring the UI-Stack! [(slides)](https://docs.google.com/presentation/d/1ACuUJ-B19hgFN2CCTYH8ClN0WD69ok8ZVnkRGbU0FjA/edit?usp=sharing). Usability, feedback, feedforward etc. in real-time web apps, (case study) postNL loader and FAQ.
-**Day assignment:** [(assignment)](./course/week-3.md#assignment-2-user-testing)
+(WAFS) Snelheid van de het kunst appie op desktop: 
 
-#### Friday 13 May
-We will have our final [peer review session](./course/peer-review.md). You will read, comment and fire issues on each others code. Doing this helps others dotting the i’s on their project.
+![image](https://user-images.githubusercontent.com/30145681/161753076-278046a9-297c-48c1-b48b-8bb84db3bd2a.png)
 
-| Time | Who | Activity |
-|:--|:--|:--|
-| | Tribe *+(Shyanta, Justus)* | Peer review |
-| | Tribe *+(Shyanta, Justus)* | Finalize your assignment |
-| 16.00 | Tribe *+(Shyanta, Justus)* | (drinks?!) |
+### PWA Snelheid
+
+(PWA) Snelheid van de het kunst appie ULT op mobiel: 
+
+![image](https://user-images.githubusercontent.com/30145681/161752352-74b4eab9-02ac-41cb-a6b7-406d33a42e1c.png)
+
+(PWA) Snelheid van de het kunst appie ULT op desktop:
+
+![image](https://user-images.githubusercontent.com/30145681/161754275-bec15155-12ae-483e-ba4b-30d639cc3f3b.png)
 
 
-<!-- Here are some hints for your project! -->
+### Snelheid detail
 
-<!-- Start out with a title and a description -->
+![image](https://user-images.githubusercontent.com/30145681/161754026-3a83f2d6-3a52-4d8c-969e-feb917388870.png)
 
-<!-- Add a nice image here at the end of the week, showing off your shiny frontend 📸 -->
+De performace bij de detail pagina is alleen wat minder, dit komt omdat ik een hele grote afbelding inlaad. Dit doe ik omdat je in kan zoomen op de foto om het kunstwerk in meer detail te bekijken.
 
-<!-- Add a link to your live demo in Github Pages 🌐-->
+### App netwerk loading
+![netwerk loading](https://user-images.githubusercontent.com/30145681/162408131-77c8e5be-24a5-44b2-a4fc-682493063a50.png)
 
-<!-- replace the code in the /docs folder with your own, so you can showcase your work with GitHub Pages 🌍 -->
+## Service worker
 
-<!-- Maybe a table of contents here? 📚 -->
+De service worker slaat de `CORE_ASSETS` bestanden op in de cache onder de naam die gegeven is in `CORE_CACHE_VERSION`. Hier haalt hij offline de styling, js, offline pagina &  2 foto's op. Ook slaat hij appart de html pagina's op waar je op komt, zo kan je de pagina's die je al bezocht heb offline bekijken. Als je offline op een pagina komt die je nog niet heb bekeken kom je op de offline versie, dan staat er dat je offline bent en de pagina niet kunt zien.
 
-<!-- ☝️ replace this description with a description of your own work -->
+## Optimalisaties
 
-<!-- How about a section that describes how to install this project? 🤓 -->
+Om de images op de home pagina sneller in te laten laden heb ik de images met `slice(0,-3)+"=s1000"` aangeroepen. Zo stel je in hoeveel pixels de foto zal hebben. Dit heb ik bij de detail pagina niet gedaan omdat je hier op de foto's kunt inzoomen. In een latere versie van de app wil ik eerst de foto's met lage pixels inladen en dan de grote foto's renderen. 
 
-<!-- ...but how does one use this project? What are its features 🤔 -->
+De pagina's worden gecached zodat deze grote foto's sneller geladen zijn als je ze al een keer geladen heb.
 
-<!-- What external data source is featured in your project and what are its properties 🌠 -->
+De client javascript heeft `defer` in de script tag zo moet de css niet wachten op de js om in te laden, hierdoor zie je de styling sneller.
 
-<!-- This would be a good place for your data life cycle ♻️-->
+## API 
 
-<!-- Maybe a checklist of done stuff and stuff still on your wishlist? ✅ -->
+De Rijks Data API is vrij te gebruiken en op https://data.rijksmuseum.nl/object-metadata/api/ te vinden. Meer informatie over deze API is te vinden op: https://data.rijksmuseum.nl/
 
-<!-- We all stand on the shoulders of giants, please link all the sources you used in to create this project. -->
+## Future features
 
-<!-- How about a license here? When in doubt use GNU GPL v3. 📜  -->
+- Loadmore button om meer dan 10 items te laten zien.
+- Hinting search om het zoeken nog makkelijker & beter te maken.
+- Zoom functie verbeteren
+- Improved UI
+- Improve Error/Loading state
+- Dynamische slice(0,-3)+"=s1000"
+
+## Licence
+
+Dit project is voorzien van een MIT licence. Zie de pagina LICENCE voor meer informatie.
+
+## Resources
+
+Rijks Data API: https://data.rijksmuseum.nl/object-metadata/api/
+
+Lessen & leraren
+
+W3 Schools

@@ -1,0 +1,38 @@
+<header>
+  <section class="usernameSection">
+    <form name-form>
+      <label>What's your name?</label>
+      <input type="text" name="username" placeholder="You name" name_input>
+      <button><span>Start searching</span></button>
+    </form>
+  </section>
+
+    <nav>
+      <ul>
+        <li>
+          <a href="/"
+            ><img src="/images/logo.png" alt="logo Rijksmuseum " width="50%" height="auto"/>
+        </a>
+        </li>
+        <li>
+          <!-- Rotation Icon + Info  -->
+          <img
+            src="/images/rotate.png"
+            alt="rotate your phone image"
+            id="rotateInfo"
+          />
+          <section>
+            <p id="rotateInfoText">
+              You can rotate your phone to see artworks without borders.
+            </p>
+          </section>
+        </li>
+        <li>
+          <form method="get" action="/search" search-form>
+            <input type="search" id="search" name="q" search-input class="searchTerm" autocomplete="off" placeholder="Search for a Master/Artwork"/>
+          </form>
+        </li>
+      </ul>
+      <ul id="searchField"></ul>
+    </nav>
+  </header>

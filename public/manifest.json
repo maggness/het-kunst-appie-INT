@@ -1,0 +1,41 @@
+{
+    "short_name": "Het Kunst Appie",
+    "name": "Het Kunst Appie ULTIMATE",
+    "icons": [
+      {
+        "src": "/images/logomobile.png",
+        "type": "image",
+        "sizes": "510x510"
+      },
+      {
+        "src": "/images/logomobile192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/android-chrome-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/android-chrome-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "start_url": "/",
+    "background_color": "black",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "black",
+    "shortcuts": [
+      {
+        "name": "Het Kunst Appie Home",
+        "short_name": "Home",
+        "description": "Home of Het Kunst Appie",
+        "url": "/",
+        "icons": [{ "src": "/images/logomobile.png", "sizes": "510x510" }]
+      }
+    ],
+    "description": "App Results"
+  }
