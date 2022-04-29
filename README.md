@@ -1,4 +1,4 @@
-# Progressive Web Apps @cmda-minor-web · 2021/22
+# Real Time Web @cmda-minor-web · 2021/22
 
 Voor mijn minor web maak ik met de API van het Rijksmuseam een applicatie waar je kan zoeken naar verschillende objecten uit deze API.
 
