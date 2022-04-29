@@ -30,7 +30,7 @@ Run de applicatie op je localhost:6969, dit kan je doen met `npm start`.
 
 De Rijks Data API is vrij te gebruiken en op https://data.rijksmuseum.nl/object-metadata/api/ te vinden. Meer informatie over deze API is te vinden op: https://data.rijksmuseum.nl/
 
-![Artboard 2](https://user-images.githubusercontent.com/30145681/165928322-3e678431-3855-49b7-9727-a159cf2a1506.png)
+<img width="377" alt="Artboard 2@2x" src="https://user-images.githubusercontent.com/30145681/165931371-a08e5ffa-251d-4213-bc7f-270409ebb7f6.png">
 
 ## Licence
 
