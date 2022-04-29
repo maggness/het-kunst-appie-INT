@@ -35,14 +35,6 @@
 
 @keyframes bewegenOmlaag {
     0% {
-        opacity: 0;
-        transform: translate(0vh, 0vh);
-    }
-    39% {
-        opacity: 0;
-        transform: translate(0vh, 0vh);
-    }
-    40% {
         opacity: 1;
         transform: translate(0vh, 0vh);
     }
@@ -55,6 +47,33 @@
     }
 }
 
+.human {
+    width: 5em;
+    height: 5em;
+    position: absolute;
+    top: var(--topcalc);
+    left: var(--leftcalc);
+    transition: .4s;
+}
+
+.human::after {
+    content: var(--humanName);
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    bottom: -1.5em;
+}
+
+.human:first-of-type {
+    --humanName: 'swag';
+    --left: 10;
+    --top: 10;
+    --leftcalc: calc(var(--left) * 1vw);
+    --topcalc: calc(var(--top) * 1vh);
+
+    background-color: green;
+}
+
 .bossfight {
     width: 100vw;
     height: 100vh;
@@ -64,11 +83,10 @@
     justify-content: center;
 }
 
-.bossfight h2 {
-    color: red;
+.bossfight h2 { 
     font-weight: 900;
     font-size: 1em;
-    font-family: darkSouls;
+    /* font-family: darkSouls; */
 }
 
 .boss {

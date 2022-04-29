@@ -4,15 +4,28 @@
   <body>
     <%- include('./partials/header') -%>
     <main>
+      <div id="online"></div>
+
+      <section class="usernameSection">
+        <form name-form>
+          <label>What's your name?</label>
+          <input type="text" name="username" value="Tim" placeholder="You name" name_input>
+          <button><span>Start searching</span></button>
+        </form>
+      </section>
+
         <section>
-          <% const img = data.webImage.url.slice(0,-3)+"=s10000" %>
+          <% const img = data.webImage.url.slice(0,-3)+"=s1000" %>
           <section class="bossfight" id="artDetail">
             <section class="boss">
               <img src="<%= img %>" alt="<%= data.title %>" width="100vmin" height="auto"/>
-              <h2>lvl 10.  <%= data.title %> </h2>
+              <h2><%= data.title %> </h2>
             </section>
           </section>
         </section>
+
+        <section id="humanSpawner"></section>
+
       <ul id="chat"></ul>
     </main>
     <%- include('./partials/footer') -%>

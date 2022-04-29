@@ -84,13 +84,30 @@ app.get("/bossfight/:id", (req, res) => {
     .catch((err) => res.send(err));
 });
 
-io.on('connection', (socket) => {
-  console.log('a user connected')
+let name = []
 
-  let name
+io.on('connection', async (socket) => {
+  socket.join("room1");
+  console.log('user: ' + socket.id + ' connected');
+
   socket.on('new user', (username) => {
-    name = username
-    io.emit("message", `${username} is now searching!`)
+    name.push(username)
+    io.emit("message", `${username} is now online!`)
+    io.emit("new user", `${username}`)
+    console.log(name + " connected, now " + name.length + " connected");
+  })
+
+  socket.on('update human left', (left) => {
+    io.emit('update human left', `${left}`)
+  })
+
+  socket.on('update human left', (nameid) => {
+    io.emit('update human left', `${nameid}`)
+  })
+
+
+  socket.on('update human top', (top) => {
+    io.emit('update human top', `${top}`)
   })
 
   socket.on('message', (message) => {
@@ -98,7 +115,9 @@ io.on('connection', (socket) => {
   })
 
   socket.on('disconnect', () => {
-    console.log(`${name} left.`)
+    console.log(`${name} left`)
+    name.splice(name.length - 1)
+    console.log('users connected: ' + name.length)
   })
 })
 
