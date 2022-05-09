@@ -7,29 +7,14 @@
     src: url(/fonts/OptimusPrinceps.ttf);
   }
 
-#chat {
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 1000;
-    color: white;
-    height: 90vh;
-    width: 40vw;
-    padding: 1rem;
-    margin: 0;
-    list-style: none;
+#humanSpawner div div li {
     text-align: center;
-    overflow: hidden;
-    word-break: break-all;
-    pointer-events: none;
+    list-style: none;
+    animation: 5s bewegenOmlaag forwards linear;
+    margin: -3vh 0 0 0;
 }
 
-#chat li {
-    padding: 0 1rem;
-    animation: 10s bewegenOmlaag forwards linear;
-}
-
-#chat li a {
+#humanSpawner div div li a {
     pointer-events: all;
 }
 
@@ -42,14 +27,14 @@
         opacity: 0;
     }
     100% {
-        transform: translate(0vh, 90vh);
+        transform: translate(0vh, -40vh);
         opacity: 0;
     }
 }
 
 .human {
-    width: 5em;
-    height: 5em;
+    width: 5vh;
+    height: 5vh;
     position: absolute;
     top: var(--topcalc);
     left: var(--leftcalc);
@@ -64,14 +49,40 @@
     bottom: -1.5em;
 }
 
+.human::before {
+    content: '';
+    background: black;
+    width: 7vh;
+    height: 1vh;
+    top: 2vh;
+    left: -1vh;
+    position: absolute;
+}
+
 .human:first-of-type {
     --humanName: 'swag';
-    --left: 10;
-    --top: 10;
+    --left: 30;
+    --top: 85;
     --leftcalc: calc(var(--left) * 1vw);
     --topcalc: calc(var(--top) * 1vh);
 
-    background-color: green;
+    background-color: black;
+}
+
+.chatStyling {
+    position: fixed;
+    bottom: 3vh;
+    right: 3vh;
+    width: 15vw;
+    height: 5vh;
+    z-index: 1000;
+    border-radius: 10px;
+    border: none;
+    padding-left: 1vh;
+}
+
+.chatStyling::placeholder {
+    color: black;
 }
 
 .bossfight {
@@ -89,7 +100,23 @@
     /* font-family: darkSouls; */
 }
 
-.boss {
+.coop {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: rgb(100,98,111);
+    background: radial-gradient(circle, rgba(100,98,102,1) 0%, rgba(68,63,69,1) 37%, rgba(51,46,52,1) 50%);
+}
+
+.rijksBackground {
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.art {
     display: flex;
     flex-direction: column-reverse;
     width: 70vw;
@@ -101,9 +128,9 @@
     align-items: center;
 }
 
-.boss img {
-    width: 100%;
-    height: auto;
+.art img {
+    height: 100%;
+    width: auto;
 }
 
 .usernameSection {
@@ -148,4 +175,11 @@
 
 .hidden {
     display: none;
+}
+
+#online {
+    position: fixed;
+    bottom: 19vh;
+    right: 19vh;
+    list-style: none;
 }

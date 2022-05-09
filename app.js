@@ -4,6 +4,7 @@ const http = require('http').createServer(app)
 const path = require('path')
 const io = require('socket.io')(http)
 const fetch = require("node-fetch");
+const { log } = require("console");
 
 const port = process.env.PORT || 333;
 const apiURL = "https://www.rijksmuseum.nl/api/nl/collection";
@@ -75,6 +76,7 @@ app.get("/search", (req, res) => {
 app.get("/bossfight/:id", (req, res) => {
   fetch(`${apiURL}/${req.params.id}?key=${API_KEY}&imgonly=true`)
     .then(async (response) => {
+      roomId = req.params.id
       const artWorks = await response.json();
       res.render("bossfight", {
         title: "Bossfight: " + req.params.id,
@@ -87,31 +89,31 @@ app.get("/bossfight/:id", (req, res) => {
 let name = []
 
 io.on('connection', async (socket) => {
-  socket.join("room1");
-  console.log('user: ' + socket.id + ' connected');
+
+  // socket.on('join room', function(room){
+  //   socket.join(room);
+  //   console.log(room);
+  //   console.log(socket.rooms);
+  // })
 
   socket.on('new user', (username) => {
+    // console.log('user: ' + socket.id + ' connected to: ' + room );
     name.push(username)
     io.emit("message", `${username} is now online!`)
-    io.emit("new user", `${username}`)
+    io.emit("new user", {name: username , id: socket.id})
     console.log(name + " connected, now " + name.length + " connected");
   })
 
-  socket.on('update human left', (left) => {
-    io.emit('update human left', `${left}`)
+  socket.on('update human left', (distance) => {
+    io.emit('update human left', {left : distance, id: socket.id})
   })
 
-  socket.on('update human left', (nameid) => {
-    io.emit('update human left', `${nameid}`)
-  })
-
-
-  socket.on('update human top', (top) => {
-    io.emit('update human top', `${top}`)
+  socket.on('update human top', (distance) => {
+    io.emit('update human top', {top : distance, id: socket.id})
   })
 
   socket.on('message', (message) => {
-    io.emit('message', `${name}: ${message}`)
+    io.emit('message', {naam: name, bericht: message, id: socket.id})
   })
 
   socket.on('disconnect', () => {

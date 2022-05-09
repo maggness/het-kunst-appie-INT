@@ -4,14 +4,12 @@ import './artworkZoom.js'
 // import {walking} from './walking.js'
 
 let socket = io()
-let messages = document.querySelector('#chat')
-let input = document.querySelector('[search-input]')
+let input = document.querySelector('[speakForm-input]')
 let nameinput = document.querySelector('[name_input]')
 const formSection = document.querySelector('.usernameSection')
 const humanSpawner = document.querySelector('#humanSpawner')
 const showOnline = document.querySelector('#online')
-
-let clientName
+let clientName ="";
 
 //Create new user name
 document.querySelector('[name-form]').addEventListener('submit', event => {
@@ -24,36 +22,42 @@ document.querySelector('[name-form]').addEventListener('submit', event => {
 }})
 
 //Spawn new user
-socket.on('new user', username => { 
-  console.log(username + ' naam ' + socket.id.toUpperCase() + ' id');
-  humanSpawner.appendChild(Object.assign(document.createElement('div'), { innerHTML: `<div id='`+username+`' style="--humanName: '`+username+`';" class="human"></div>` }))
+socket.on('new user', user => { 
+  console.log(user.name + ' naam ' + user.id + ' id');
+  
+  const room = document.querySelector('[paintItem]').id;
+  console.log(room)
+  socket.emit('join room', room);
+
+  humanSpawner.appendChild(Object.assign(document.createElement('div'), { innerHTML: `<div id='`+user.id+`' style="--humanName: '`+user.name+`';" class="human"></div>` }))
 })
 
-socket.on('new user', username => { 
-  showOnline.appendChild(Object.assign(document.createElement('ul'), { innerHTML: `<li>`+username+`</li>` }))
+socket.on('new user', user => { 
+  showOnline.appendChild(Object.assign(document.createElement('li'), { innerHTML: user.name }))
 })
 
 // Movement Humans
-socket.on('update human left', left => {
-  document.querySelector('#'+clientName).style.setProperty("--left", left);
+socket.on('update human left', playerMovementLeft => {
+  document.getElementById(playerMovementLeft.id).style.setProperty("--left", playerMovementLeft.left);
 })
 
-socket.on('update human top', top => { 
-  document.querySelector('#'+clientName).style.setProperty("--top", top);
+socket.on('update human top', playerMovementTop => { 
+  document.getElementById(playerMovementTop.id).style.setProperty("--top", playerMovementTop.top);
 })
 
 //Chat function
-document.querySelector('[search-form]').addEventListener('submit', event => {
+document.querySelector('[speakForm]').addEventListener('submit', event => {
   event.preventDefault()
   console.log('zoeken');
   if (input.value) {
     socket.emit('message', input.value)
+    input.value = ''
   }
 })
 
-socket.on('message', message => {
-  messages.appendChild(Object.assign(document.createElement('li'), { innerHTML: '<a href=/search?q='+ message +'>' + message + '</a>' }))
-  messages.scrollTop = messages.scrollHeight
+socket.on('message', item => {
+  let messages = document.getElementById(item.id)
+  messages.appendChild(Object.assign(document.createElement('li'), { innerHTML: item.bericht }))
 })
 
 // const installServiceWorker = async () => {
@@ -74,32 +78,17 @@ let fastSpeed = 1;
 // const fastmsg = document.getElementById('fastdragmsg')
 
 document.addEventListener("keydown", (event) => {
-  console.log(clientName);
-  // let input = document.querySelector('[search-input]')
-  // const human = document.getElementById(humanidSet);
 
-  // console.log(socket.id.toUpperCase())
-
-  const human = document.querySelector('#'+clientName)
-  
-  // console.log(human + ' plis werk');
+  const human = document.getElementById(socket.id)
 
   const focusLeft = human.getBoundingClientRect().left/window.innerWidth*100
   const focusTop = human.getBoundingClientRect().top/window.innerHeight*100
-
-  if (event.keyCode === 90) {
-    
-    fastSpeed = fastSpeed + 4
-    if (fastSpeed > 5) {
-      fastSpeed = 1
-    }
 
     // if (fastmsg.textContent === 'Fast drag is ON, press Z to turn it ON') {
     //   fastmsg.textContent = 'Fast drag is OFF, press Z to turn it OFF'
     // } else {
     //   fastmsg.textContent = 'Fast drag is ON, press Z to turn it ON'
     // }
-  }
 
 //   if (event.keyCode === 13) {
 //     console.log('enter');
@@ -111,28 +100,37 @@ document.addEventListener("keydown", (event) => {
 //     }
 //   }
 
+
     if (event.keyCode === 39) {
         event.preventDefault();
+        if (parseInt(focusLeft.toFixed(0)) < 80) { 
         // human.style.setProperty("--left", parseInt(focusLeft.toFixed(0)) + 5 * fastSpeed);
-        socket.emit('update human left', parseInt(focusLeft.toFixed(0)) + 5 * fastSpeed)
+          socket.emit('update human left', parseInt(focusLeft.toFixed(0)) + 5 * fastSpeed)
+        }
     }
 
     if (event.keyCode === 37) {
         event.preventDefault();
+        if (parseInt(focusLeft.toFixed(0)) > 20) {
         // human.style.setProperty("--left", parseInt(focusLeft.toFixed(0)) - 5 * fastSpeed);
-        socket.emit('update human left', parseInt(focusLeft.toFixed(0)) - 5 * fastSpeed)
+          socket.emit('update human left', parseInt(focusLeft.toFixed(0)) - 5 * fastSpeed)
+        }
     }
 
     if (event.keyCode === 38) {
         event.preventDefault();
+        if (parseInt(focusTop.toFixed(0)) > 78) {
         // human.style.setProperty("--top", parseInt(focusTop.toFixed(0)) - 5 * fastSpeed);
-        socket.emit('update human top', parseInt(focusTop.toFixed(0)) - 5 * fastSpeed)
+          socket.emit('update human top', parseInt(focusTop.toFixed(0)) - 5 * fastSpeed)
+        }
     }
 
     if (event.keyCode === 40) {
         event.preventDefault();
+        if (parseInt(focusTop.toFixed(0)) < 90) {
         // human.style.setProperty("--top", parseInt(focusTop.toFixed(0)) + 5 * fastSpeed);
-        socket.emit('update human top', parseInt(focusTop.toFixed(0)) + 5 * fastSpeed)
+          socket.emit('update human top', parseInt(focusTop.toFixed(0)) + 5 * fastSpeed )
+        }
     }
 });
 }

@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="nl">
   <%- include('./partials/head') -%>
-  <body>
+  <body class="coop">
     <%- include('./partials/header') -%>
     <main>
-      <div id="online"></div>
+      <div>
+        <ul id="online">
+          <li>People online:</li>
+        </ul>
+      </div>
 
       <section class="usernameSection">
         <form name-form>
@@ -17,8 +21,8 @@
         <section>
           <% const img = data.webImage.url.slice(0,-3)+"=s1000" %>
           <section class="bossfight" id="artDetail">
-            <section class="boss">
-              <img src="<%= img %>" alt="<%= data.title %>" width="100vmin" height="auto"/>
+            <section class="art">
+              <img src="<%= img %>" alt="<%= data.title %>" paintItem id="<%= data.id %>" width="100vmin" height="auto"/>
               <h2><%= data.title %> </h2>
             </section>
           </section>
@@ -26,7 +30,11 @@
 
         <section id="humanSpawner"></section>
 
-      <ul id="chat"></ul>
+        <img class="rijksBackground" src="/images/background.png">
+
+        <form speakForm>
+          <input type="text" speakForm-input autocomplete="off" placeholder="Type to chat..." class="chatStyling"/>
+        </form>
     </main>
     <%- include('./partials/footer') -%>
   </body>
