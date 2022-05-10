@@ -73,13 +73,13 @@ app.get("/search", (req, res) => {
     .catch((err) => res.send(err));
 });
 
-app.get("/bossfight/:id", (req, res) => {
+app.get("/interactiveRoom/:id", (req, res) => {
   fetch(`${apiURL}/${req.params.id}?key=${API_KEY}&imgonly=true`)
     .then(async (response) => {
       roomId = req.params.id
       const artWorks = await response.json();
-      res.render("bossfight", {
-        title: "Bossfight: " + req.params.id,
+      res.render("interactiveRoom", {
+        title: "interactiveRoom: " + req.params.id,
         data: artWorks.artObject,
       });
     })
@@ -88,18 +88,14 @@ app.get("/bossfight/:id", (req, res) => {
 
 let name = []
 
-io.on('connection', async (socket) => {
-
-  // socket.on('join room', function(room){
+io.on('connection', (socket) => {
+  // socket.on('join room', (room) => {
   //   socket.join(room);
-  //   console.log(room);
   //   console.log(socket.rooms);
   // })
 
   socket.on('new user', (username) => {
-    // console.log('user: ' + socket.id + ' connected to: ' + room );
     name.push(username)
-    io.emit("message", `${username} is now online!`)
     io.emit("new user", {name: username , id: socket.id})
     console.log(name + " connected, now " + name.length + " connected");
   })
@@ -118,6 +114,7 @@ io.on('connection', async (socket) => {
 
   socket.on('disconnect', () => {
     console.log(`${name} left`)
+    io.emit('user left', {naam: name, id: socket.id})
     name.splice(name.length - 1)
     console.log('users connected: ' + name.length)
   })

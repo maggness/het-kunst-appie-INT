@@ -16,6 +16,10 @@ document.querySelector('[name-form]').addEventListener('submit', event => {
   event.preventDefault()
   if (nameinput.value) {
     socket.emit('new user', nameinput.value)
+
+    // const room = document.querySelector('[paintItem]').id;
+    // socket.emit('join room', room);
+
     clientName = nameinput.value
     walking()
     formSection.classList.add('hidden')
@@ -23,17 +27,8 @@ document.querySelector('[name-form]').addEventListener('submit', event => {
 
 //Spawn new user
 socket.on('new user', user => { 
-  console.log(user.name + ' naam ' + user.id + ' id');
-  
-  const room = document.querySelector('[paintItem]').id;
-  console.log(room)
-  socket.emit('join room', room);
-
   humanSpawner.appendChild(Object.assign(document.createElement('div'), { innerHTML: `<div id='`+user.id+`' style="--humanName: '`+user.name+`';" class="human"></div>` }))
-})
-
-socket.on('new user', user => { 
-  showOnline.appendChild(Object.assign(document.createElement('li'), { innerHTML: user.name }))
+  showOnline.appendChild(Object.assign(document.createElement('li'), { innerHTML: "<p "+user.id+">"+user.name+"</p>" }))
 })
 
 // Movement Humans
@@ -60,6 +55,11 @@ socket.on('message', item => {
   messages.appendChild(Object.assign(document.createElement('li'), { innerHTML: item.bericht }))
 })
 
+  socket.on('user left', user => {
+    console.log(user.id);
+    document.querySelector('['+user.id+']').remove();
+  })
+
 // const installServiceWorker = async () => {
 //   if ('serviceWorker' in navigator) {
 //     try {
@@ -73,33 +73,12 @@ socket.on('message', item => {
 // installServiceWorker()
 
 const walking = () => {
-
 let fastSpeed = 1; 
-// const fastmsg = document.getElementById('fastdragmsg')
 
 document.addEventListener("keydown", (event) => {
-
   const human = document.getElementById(socket.id)
-
   const focusLeft = human.getBoundingClientRect().left/window.innerWidth*100
   const focusTop = human.getBoundingClientRect().top/window.innerHeight*100
-
-    // if (fastmsg.textContent === 'Fast drag is ON, press Z to turn it ON') {
-    //   fastmsg.textContent = 'Fast drag is OFF, press Z to turn it OFF'
-    // } else {
-    //   fastmsg.textContent = 'Fast drag is ON, press Z to turn it ON'
-    // }
-
-//   if (event.keyCode === 13) {
-//     console.log('enter');
-//     document.activeElement.classList.add('enterAdded');
-//     document.activeElement.blur()
-
-//     if (focusLeft > 59 && focusTop > 59) {
-//       event.target.style.transform = 'scale(0)'
-//     }
-//   }
-
 
     if (event.keyCode === 39) {
         event.preventDefault();

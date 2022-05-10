@@ -67,6 +67,7 @@
     --topcalc: calc(var(--top) * 1vh);
 
     background-color: black;
+    box-shadow: 0px 16px 14px #00000040;
 }
 
 .chatStyling {
