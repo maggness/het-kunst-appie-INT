@@ -1,7 +1,6 @@
 import './easterEggs.js'
 import './openHelpText.js'
 import './artworkZoom.js'
-// import {walking} from './walking.js'
 
 let socket = io()
 let input = document.querySelector('[speakForm-input]')
@@ -11,12 +10,14 @@ const humanSpawner = document.querySelector('#humanSpawner')
 const showOnline = document.querySelector('#online')
 let clientName ="";
 
+if (window.location.href.indexOf("interactiveRoom") > -1) {
 //Create new user name
 document.querySelector('[name-form]').addEventListener('submit', event => {
   event.preventDefault()
   if (nameinput.value) {
     socket.emit('new user', nameinput.value)
 
+    //Code for rooms
     // const room = document.querySelector('[paintItem]').id;
     // socket.emit('join room', room);
 
@@ -33,11 +34,15 @@ socket.on('new user', user => {
 
 // Movement Humans
 socket.on('update human left', playerMovementLeft => {
-  document.getElementById(playerMovementLeft.id).style.setProperty("--left", playerMovementLeft.left);
+  if ( document.getElementById(playerMovementLeft.id) != null ) {
+    document.getElementById(playerMovementLeft.id).style.setProperty("--left", playerMovementLeft.left);
+  }
 })
 
 socket.on('update human top', playerMovementTop => { 
-  document.getElementById(playerMovementTop.id).style.setProperty("--top", playerMovementTop.top);
+  if ( document.getElementById(playerMovementTop.id) != null ) {
+    document.getElementById(playerMovementTop.id).style.setProperty("--top", playerMovementTop.top);
+  }
 })
 
 //Chat function
@@ -56,10 +61,12 @@ socket.on('message', item => {
 })
 
   socket.on('user left', user => {
-    console.log(user.id);
-    document.querySelector('['+user.id+']').remove();
+    if ( document.querySelector('['+user.id+']') != null ) {
+      document.querySelector('['+user.id+']').remove();
+      document.getElementById(user.id).remove();
+    }
   })
-
+}
 // const installServiceWorker = async () => {
 //   if ('serviceWorker' in navigator) {
 //     try {

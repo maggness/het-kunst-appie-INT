@@ -114,7 +114,7 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', () => {
     console.log(`${name} left`)
-    io.emit('user left', {naam: name, id: socket.id})
+    io.emit('user left', {id: socket.id})
     name.splice(name.length - 1)
     console.log('users connected: ' + name.length)
   })
