@@ -3,6 +3,7 @@
 Voor mijn minor web maak ik met de API van het Rijksmuseam een applicatie waar je kan zoeken naar verschillende objecten uit deze API. Ook kan je door middel van sockets met elkaar interacteren.
 
 Link naar de home pagina: https://het-kunst-appie-int.herokuapp.com
+
 Link naar directe interactive room: https://het-kunst-appie-int.herokuapp.com/interactiveRoom/BK-AM-33-E
 
 Om bij een interactive room te komen moet je op een artwork drukken en dan op de naam drukken van dit artwork.
