@@ -67,6 +67,8 @@ socket.on('message', item => {
     }
   })
 }
+
+// Service worker, uncommend to activate
 // const installServiceWorker = async () => {
 //   if ('serviceWorker' in navigator) {
 //     try {
