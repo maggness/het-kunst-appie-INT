@@ -31,7 +31,7 @@ Hierboven staan hele ruige schetsen van mijn eerste 3 concepten. Hieronder zijn 
 ![schetsen](https://user-images.githubusercontent.com/30145681/168043625-c69d9586-0576-4d6a-96ae-c278505c8103.PNG)
 
 ### Concept 1: Raid boss
-Per schilderij kom je in een “Raid room” met maximaal 4 andere mensen. Het schilderij komt tot leven en het is jullie taak om dit schilderij samen te verslaan. Je speelt omstebeurt een Attack, Defense of Heal kaart. Hierdoor val je het schilderij aan of help je je team. Jullie winnen als het schilderij is verslagen en verliezen als jij en je team verslagen is.
+Per schilderij kom je in een “Raid room” met maximaal 8 andere mensen. Het schilderij komt tot leven en het is jullie taak om dit schilderij samen te verslaan. Je speelt omstebeurt een Attack, Defense of Heal kaart. Hierdoor val je het schilderij aan of help je je team. Jullie winnen als het schilderij is verslagen en verliezen als jij en je team verslagen is.
 
 ### Concept 2: Interactive art room
 Je kunt virtueel in het rijksmuseum rondlopen en chatten met de andere mensen die aan het kijken zijn bij het schilderij. 
