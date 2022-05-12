@@ -93,6 +93,26 @@ Ik haal hier via de URL het id van het schilderij op. En daar vraag ik dan de ti
 ## Data Lifecycle Diagram
 ![image](https://user-images.githubusercontent.com/30145681/168076271-abb410e1-15b1-4605-be36-dd8d5cd2eda2.png)
 
+## Real time events
+
+### Connection
+Als een user connect wordt dit serverside gelogd 
+
+### User Created
+Als er een username ingestuurd is wordt hier een karakter voor gemaakt die bestuurd kan worden. Ook update dit de online lijst.
+
+### Keydown event (movement)
+Als er een keydown event is wordt de top of left verandert van de div met het socket.id van de cliënt die dit event activeert. Zo beweegt het karakter van dit persoon.
+
+### Message 
+Als er een bericht verstuurd wordt zie je dit bericht boven het persoon die dit verstuurd heeft.
+
+### Disconnect
+Als er een gebruiker disconnect wordt de naam & div verwijdert van deze gebruiker.
+
+## Reflectie
+
+Ik vond het echt leuk om te werken met sockets. Het is super leuk om te zien dat je live met elkaar iets kan doen op je pagina. Ik heb voor deze opdracht nog nooit met sockets gewerkt dus het was wel echt een uitdaging. De eerste week was het vooral proberen de chat aan de praat te krijgen met namen, het was echt heel nice toen dit gelukt was. In de 2e week zat ik een hele dag vast op het werkend krijgen van het bewegen van de karakters, hier zat ik er toen wel echt doorheen. Maar met hulp van Justus was dit opgelost de volgende week. De werking van de sockets begon ik steeds beter te begrijpen en ik denk dat ik veel vette dingen kan maken de volgende keer als ik hier weer mee zou gaan werken.
 
 ## Licence
 
@@ -105,5 +125,7 @@ Rijks Data API: https://data.rijksmuseum.nl/object-metadata/api/
 Lessen & leraren
 
 W3 Schools
+
+Socket.io
 
 
