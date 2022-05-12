@@ -39,11 +39,60 @@ Je kunt virtueel in het rijksmuseum rondlopen en chatten met de andere mensen di
 ### Concept 3: Virtueel touwtje trekken
 Je krijg samen met andere mensen een touw vast en 4 opties voor schilderijen aan elke kant van het scherm. Als het middelste puntje van het touw 3 seconden aan een kant is van het scherm gaat iedereen naar dit schilderij toe.
 
+### Gekozen Concept:
+Ik heb voor de Interactive art room gekozen. Het lijkt me leuk en uitdagend om zoiets te maken. Ook omdat het misschien een leuk concept is voor het rijksmuseum.
+
+## App features
+
+### Features
+- Kunststukken van het Rijksmuseum bekijken
+- Zoeken naar kunststukken
+- Bekijken & Inzoomen bij kunststukken
+- Desktop/Laptop: Interactive Room joinen bij kunststukken, hierin rond kunnen lopen en chatten met andere mensen
+- Mobile: In landscape modus kunstwerken bekijken
+
+### Future features
+- Improved Interactive Room UX/UI
+- Users opslaan in een array
+- Socket rooms maken per kunststuk
+- Meer interacties voor de karakters
+- Mobile versie van Interactive Room
+- Karakter customization 
+- Service worker aan zetten & optimaliseren
+
+
 ## API 
 
 De Rijks Data API is vrij te gebruiken en op https://data.rijksmuseum.nl/object-metadata/api/ te vinden. Meer informatie over deze API is te vinden op: https://data.rijksmuseum.nl/
 
+### API Response 
+
+``` json
+"artObjects": [
+  {
+    "links": {}               // links naar het schilderij in the api of website
+    "id":                     // ID van het schilderij
+    "objectNumber":           // object number van het schilderij
+    "title":                  // schilderij titel
+    "longTitle":              // schilderij lange titel
+    "principleOrFirstMaker":  // schilderij artiest
+    "hasImage":               // kijkt of het schilderij een image heeft
+    "showImage":              // vertelt of het schilderij getoond word
+    "permitDownload":         // vertelt of het schilderij gedownload mag worden
+    "webImage": {}            // de web image
+    "headerImage": {}         // de header image
+    "productionPlaces": []    // plek waar het schilderij gemaakt is
+  }
+] 
+```
+Ik haal hier via de URL het id van het schilderij op. En daar vraag ik dan de title, image en ID weer op. 
+
+## Data Model API
 <img width="377" alt="Artboard 2@2x" src="https://user-images.githubusercontent.com/30145681/165931371-a08e5ffa-251d-4213-bc7f-270409ebb7f6.png">
+
+## Data Lifecycle Diagram
+![image](https://user-images.githubusercontent.com/30145681/168076271-abb410e1-15b1-4605-be36-dd8d5cd2eda2.png)
+
 
 ## Licence
 
