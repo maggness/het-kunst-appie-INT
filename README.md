@@ -14,7 +14,7 @@ Om bij een interactive room te komen moet je op een artwork drukken en dan op de
 
 Met deze app kan je zoeken naar objecten uit de database van het Rijksmuseum. Je kan op de kunstwerken drukken en zo kom je op een detail pagina met wat langere informatie over dat kunstwerk. Ook kan je inzoomen op het kunstwerk. Als je op mobiel kijkt en je het scherm naar landscape modus brengt gaat de UI weg en zie je het kunstwerk nog beter, ook hier kun je inzoomen.
 
-Als je op pc/laptop zit kan je drukken op de artwork naam & dan kom je in de Interactive Room. Hier kan je samen met andere mensen rond lopen en chatten. Lopen doe je met de pijltjestoetsen en de chat staat rechts onder.
+Als je op pc/laptop zit kan je drukken op de artwork naam als je op de /art pagina zit van een kunstwerk. Hier kom je als je op een kunstwerk drukt op de home pagina of als je gezocht heb, dan kom je in de Interactive Room. Hier kan je samen met andere mensen rond lopen en chatten. Lopen doe je met de pijltjestoetsen en de chat staat rechts onder.
 
 ## Install the project
 
