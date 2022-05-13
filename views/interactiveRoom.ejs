@@ -7,6 +7,11 @@
       <div>
         <ul id="online">
           <li>People online:</li>
+          <% users.forEach(user => { %>
+            <li>
+              <p <%= user.id %>><%= user.username %></p>
+            </li>
+          <% }) %>
         </ul>
       </div>
 
@@ -29,7 +34,13 @@
           </section>
         </section>
 
-        <section id="humanSpawner"></section>
+        <section id="humanSpawner">
+          <% users.forEach(user => { %>
+            <div>
+              <div id='<%= user.id %>' style="--humanName: '<%= user.username %>';" class="human"></div>
+            </div>
+          <% }) %>
+        </section>
 
         <img class="rijksBackground" src="/images/background.png">
 

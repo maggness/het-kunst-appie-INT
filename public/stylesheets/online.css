@@ -30,6 +30,7 @@
     top: var(--topcalc);
     left: var(--leftcalc);
     transition: .4s;
+    /* transform: scale(calc(var(--top))); */
 }
 
 .human::after {
@@ -174,4 +175,30 @@
     bottom: 19vh;
     right: 19vh;
     list-style: none;
+}
+
+h2 .arrowIntroom {
+    width: 13rem;
+    height: auto;
+    min-width: 8rem;
+    pointer-events: none;
+    order: 2;
+    margin-left: 1rem;
+}
+
+.defaultDance {
+    width: 8vw;
+    left: -2vw;
+    bottom: -1vh;
+    position: absolute;
+}
+
+.invisDefault {
+    background-color: transparent !important; 
+    box-shadow: none !important;
+}
+
+.invisDefault::before {
+    background-color: transparent;
+    box-shadow: none;
 }

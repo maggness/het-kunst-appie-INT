@@ -168,4 +168,13 @@
       margin: 0;
       display: block;
     }
+
+    .artSectionDetails a {
+      pointer-events: all;
+      text-decoration: underline;
+    }
+
+    h2 .arrowIntroom {
+      display: block;
+  }
   }

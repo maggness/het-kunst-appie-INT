@@ -5,11 +5,14 @@ const path = require('path')
 const io = require('socket.io')(http)
 const fetch = require("node-fetch");
 const { log } = require("console");
+const { stringify } = require("querystring");
 
 const port = process.env.PORT || 333;
 const apiURL = "https://www.rijksmuseum.nl/api/nl/collection";
 const searchValue = "";
 let artLength = "10";
+
+let name = []
 
 require("dotenv").config();
 
@@ -76,47 +79,50 @@ app.get("/search", (req, res) => {
 app.get("/interactiveRoom/:id", (req, res) => {
   fetch(`${apiURL}/${req.params.id}?key=${API_KEY}&imgonly=true`)
     .then(async (response) => {
-      roomId = req.params.id
       const artWorks = await response.json();
       res.render("interactiveRoom", {
         title: "interactiveRoom: " + req.params.id,
         data: artWorks.artObject,
+        users: name
       });
     })
     .catch((err) => res.send(err));
 });
 
-let name = []
-
 io.on('connection', (socket) => {
-  // socket.on('join room', (room) => {
-  //   socket.join(room);
-  //   console.log(socket.rooms);
-  // })
-
-  socket.on('new user', (username) => {
-    name.push(username)
-    io.emit("new user", {name: username , id: socket.id})
-    console.log(name + " connected, now " + name.length + " connected");
+  console.log('user connected');
+  socket.on('join room', (room) => {
+    socket.join(room.name);
   })
 
-  socket.on('update human left', (distance) => {
-    io.emit('update human left', {left : distance, id: socket.id})
+  socket.on('new user', (username, room) => {
+    let fullUser = {username: username, id: socket.id};
+    name.push(fullUser)
+    io.to(room).emit("new user", {name: username , id: socket.id})
+    console.log(fullUser);
   })
 
-  socket.on('update human top', (distance) => {
-    io.emit('update human top', {top : distance, id: socket.id})
+  socket.on('update human left', (distance, room) => {
+    io.to(room).emit('update human left', {left : distance, id: socket.id})
   })
 
-  socket.on('message', (message) => {
-    io.emit('message', {naam: name, bericht: message, id: socket.id})
+  socket.on('update human top', (distance, room) => {
+    io.to(room).emit('update human top', {top : distance, id: socket.id})
+  })
+
+  socket.on('message', (message, room) => {
+    io.to(room).emit('message', {naam: name, bericht: message, id: socket.id})
+  })
+
+  socket.on('update Human', (room) => {
+    io.to(room).emit('update Human', {id: socket.id})
   })
 
   socket.on('disconnect', () => {
-    console.log(`${name} left`)
     io.emit('user left', {id: socket.id})
-    name.splice(name.length - 1)
-    console.log('users connected: ' + name.length)
+    console.log('disconnect '+socket.id);
+    name = name.filter(user => user.id !== socket.id );
+    console.log(name);
   })
 })
 

@@ -394,3 +394,16 @@ header {
   footer button {
     display: none;
   }
+
+  .artSectionDetails a {
+    pointer-events: none;
+    text-decoration: none;
+  }
+
+  h2 .arrowIntroom {
+    display: none;
+}
+
+main section .artSectionDetails h2 {
+  display: flex;
+}

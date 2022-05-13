@@ -9,9 +9,12 @@
         <section class="artSectionDetails" id="artDetail">
           <img src="<%= img %>" alt="<%= data.title %>" width="100vmin" height="auto"/>
           <h2>
-            <a href="/interactiveRoom/<%= data.objectNumber %>"><%= data.title %> </a> <br />
-            <i>- <%= data.principalOrFirstMaker %></i>
-            <span>Tap artwork to zoom in</span>
+            <img src="/images/arrow.svg" class="arrowIntroom">
+            <div>
+              <a href="/interactiveRoom/<%= data.objectNumber %>"><%= data.title %> </a> <br />
+              <i>- <%= data.principalOrFirstMaker %></i>
+              <span>Tap artwork to zoom in</span>
+            </div>
           </h2>
         </section>
       </section>

@@ -8,19 +8,18 @@ let nameinput = document.querySelector('[name_input]')
 const formSection = document.querySelector('.usernameSection')
 const humanSpawner = document.querySelector('#humanSpawner')
 const showOnline = document.querySelector('#online')
+const room = document.querySelector('[paintItem]').id;
 let clientName ="";
 
 if (window.location.href.indexOf("interactiveRoom") > -1) {
+  socket.emit('join room', {name: room});
 //Create new user name
 document.querySelector('[name-form]').addEventListener('submit', event => {
   event.preventDefault()
   if (nameinput.value) {
-    socket.emit('new user', nameinput.value)
+    socket.emit('new user', nameinput.value, room)
 
     //Code for rooms
-    // const room = document.querySelector('[paintItem]').id;
-    // socket.emit('join room', room);
-
     clientName = nameinput.value
     walking()
     formSection.classList.add('hidden')
@@ -48,11 +47,22 @@ socket.on('update human top', playerMovementTop => {
 //Chat function
 document.querySelector('[speakForm]').addEventListener('submit', event => {
   event.preventDefault()
-  console.log('zoeken');
-  if (input.value) {
-    socket.emit('message', input.value)
+
+  // Misschien wel leuk om te proberen :)
+  if ( input.value == 'default' ) {
+    socket.emit('update Human', room)
     input.value = ''
+  } else {
+    if (input.value) {
+      socket.emit('message', input.value, room)
+      input.value = ''
+    }
   }
+})
+
+socket.on('update Human', item => {
+  document.getElementById(item.id).innerHTML = "<img src='/images/default.gif' class='defaultDance'>"
+  document.getElementById(item.id).classList.add('invisDefault')
 })
 
 socket.on('message', item => {
@@ -62,6 +72,7 @@ socket.on('message', item => {
 
   socket.on('user left', user => {
     if ( document.querySelector('['+user.id+']') != null ) {
+      console.log(user.id + ' left');
       document.querySelector('['+user.id+']').remove();
       document.getElementById(user.id).remove();
     }
@@ -93,7 +104,7 @@ document.addEventListener("keydown", (event) => {
         event.preventDefault();
         if (parseInt(focusLeft.toFixed(0)) < 80) { 
         // human.style.setProperty("--left", parseInt(focusLeft.toFixed(0)) + 5 * fastSpeed);
-          socket.emit('update human left', parseInt(focusLeft.toFixed(0)) + 5 * fastSpeed)
+          socket.emit('update human left', parseInt(focusLeft.toFixed(0)) + 5 * fastSpeed, room)
         }
     }
 
@@ -101,7 +112,7 @@ document.addEventListener("keydown", (event) => {
         event.preventDefault();
         if (parseInt(focusLeft.toFixed(0)) > 20) {
         // human.style.setProperty("--left", parseInt(focusLeft.toFixed(0)) - 5 * fastSpeed);
-          socket.emit('update human left', parseInt(focusLeft.toFixed(0)) - 5 * fastSpeed)
+          socket.emit('update human left', parseInt(focusLeft.toFixed(0)) - 5 * fastSpeed, room)
         }
     }
 
@@ -109,7 +120,7 @@ document.addEventListener("keydown", (event) => {
         event.preventDefault();
         if (parseInt(focusTop.toFixed(0)) > 78) {
         // human.style.setProperty("--top", parseInt(focusTop.toFixed(0)) - 5 * fastSpeed);
-          socket.emit('update human top', parseInt(focusTop.toFixed(0)) - 5 * fastSpeed)
+          socket.emit('update human top', parseInt(focusTop.toFixed(0)) - 5 * fastSpeed, room)
         }
     }
 
@@ -117,7 +128,7 @@ document.addEventListener("keydown", (event) => {
         event.preventDefault();
         if (parseInt(focusTop.toFixed(0)) < 90) {
         // human.style.setProperty("--top", parseInt(focusTop.toFixed(0)) + 5 * fastSpeed);
-          socket.emit('update human top', parseInt(focusTop.toFixed(0)) + 5 * fastSpeed )
+          socket.emit('update human top', parseInt(focusTop.toFixed(0)) + 5 * fastSpeed, room)
         }
     }
 });
