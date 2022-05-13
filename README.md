@@ -105,7 +105,8 @@ Ik haal hier via de URL het id van het schilderij op. En daar vraag ik dan de ti
 
 ### Connection
 Als een user connect wordt dit serverside gelogd 
-Je komt in een room van het ID van het schilderij
+
+Je komt in een socket room van het ID van het schilderij
 
 ### User Created
 Als er een username ingestuurd is wordt hier een karakter voor gemaakt die bestuurd kan worden. Ook update dit de online lijst.
