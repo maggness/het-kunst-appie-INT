@@ -53,14 +53,16 @@ Ik heb voor de Interactive art room gekozen. Het lijkt me leuk en uitdagend om z
 ### Features
 - Kunststukken van het Rijksmuseum bekijken
 - Zoeken naar kunststukken
+- Users opslaan in een array
+- Socket rooms maken per kunststuk
+- Secret interactie voor karakters
 - Bekijken & Inzoomen bij kunststukken
 - Desktop/Laptop: Interactive Room joinen bij kunststukken, hierin rond kunnen lopen en chatten met andere mensen
 - Mobile: In landscape modus kunstwerken bekijken
 
 ### Future features
 - Improved Interactive Room UX/UI
-- Users opslaan in een array
-- Socket rooms maken per kunststuk
+- Users opslaan in een array optimaliseren
 - Meer interacties voor de karakters
 - Mobile versie van Interactive Room
 - Karakter customization 
@@ -103,6 +105,8 @@ Ik haal hier via de URL het id van het schilderij op. En daar vraag ik dan de ti
 
 ### Connection
 Als een user connect wordt dit serverside gelogd 
+
+Je komt in een socket room van het ID van het schilderij
 
 ### User Created
 Als er een username ingestuurd is wordt hier een karakter voor gemaakt die bestuurd kan worden. Ook update dit de online lijst.
